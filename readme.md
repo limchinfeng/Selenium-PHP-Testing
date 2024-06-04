@@ -20,3 +20,10 @@ https://himanshu-sheth.medium.com/the-most-detailed-selenium-php-guide-with-exam
 https://reintech.io/blog/php-selenium-web-automation-testing-php
 
 https://www.browserstack.com/guide/selenium-and-php-tutorial
+
+
+Add the exe to Environment Variable path
+command to run the webdriver
+msedgedriver
+chromedriver
+geckodriver

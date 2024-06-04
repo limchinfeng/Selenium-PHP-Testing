@@ -35,9 +35,9 @@ class Test
 
     public function login()
     {
-        $this->driver->get('http://localhost:8000/login');
-        $this->driver->findElement(WebDriverBy::name('email'))->sendKeys('your-email@example.com');
-        $this->driver->findElement(WebDriverBy::name('password'))->sendKeys('your-password');
+        $this->driver->get('http://127.0.0.1:8000/login');
+        $this->driver->findElement(WebDriverBy::name('email'))->sendKeys('test@mail.com');
+        $this->driver->findElement(WebDriverBy::name('password'))->sendKeys('password');
         $this->driver->findElement(WebDriverBy::name('password'))->submit();
     }
 
@@ -78,7 +78,8 @@ class Test
 
     public function search()
     {
-        $this->driver->get('https://www.limkimseah.com');
+        $this->login();
+        $this->driver->get('http://127.0.0.1:8000/profile');
         // $element = $this->driver->findElement(WebDriverBy::name('q'));
         // if ($element) {
           //     $element->sendKeys('limkimseah.com');
@@ -88,8 +89,8 @@ class Test
             //     echo "Search box not found." . PHP_EOL;
             // }
             
-            // sleep(3000);
-            $this->driver->get('https://www.google.com');
+        sleep(3000);
+        $this->driver->get('https://www.google.com');
     }
 }
 
