@@ -14,16 +14,16 @@ class Test
     public function __construct()
     {
         // Chrome
-        $host = 'http://localhost:9515';
-        $capabilities = DesiredCapabilities::chrome(); 
+        // $host = 'http://localhost:9515';
+        // $capabilities = DesiredCapabilities::chrome(); 
 
         // Firefox
-        // $host = 'http://localhost:4444';
-        // $capabilities = DesiredCapabilities::firefox();
+        $host = 'http://localhost:4444';
+        $capabilities = DesiredCapabilities::firefox();
         
         // Microsoft Edge
-        // $host = 'http://localhost:9515';
-        // $capabilities = DesiredCapabilities::microsoftEdge();
+        $host = 'http://localhost:9515';
+        $capabilities = DesiredCapabilities::microsoftEdge();
 
         $this->driver = RemoteWebDriver::create($host, $capabilities);
     }
@@ -38,7 +38,8 @@ class Test
         $this->driver->get('http://127.0.0.1:8000/login');
         $this->driver->findElement(WebDriverBy::name('email'))->sendKeys('test@mail.com');
         $this->driver->findElement(WebDriverBy::name('password'))->sendKeys('password');
-        $this->driver->findElement(WebDriverBy::name('password'))->submit();
+        $this->driver->findElement(WebDriverBy::name('submit'))->click();
+        // $this->driver->findElement(WebDriverBy::name('password'))->submit();
     }
 
     public function testCreate()
@@ -89,8 +90,9 @@ class Test
             //     echo "Search box not found." . PHP_EOL;
             // }
             
-        sleep(3000);
-        $this->driver->get('https://www.google.com');
+            sleep(3000);
+            // $this->driver->get('https://www.google.com');
+        echo "successfully login and go to profile page" . PHP_EOL;
     }
 }
 
