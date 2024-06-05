@@ -8,9 +8,9 @@
 - https://github.com/php-webdriver/php-webdriver/wiki/Example-command-reference
 
 ### WebDriver for
-- [Chrome](https://googlechromelabs.github.io/chrome-for-testing/)
-- [Firefox](https://github.com/mozilla/geckodriver/releases/tag/v0.34.0)
-- [Microsoft Edge](https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/?form=MA13LH)
+- [Chrome](https://googlechromelabs.github.io/chrome-for-testing/) - chromedriver 
+- [Firefox](https://github.com/mozilla/geckodriver/releases/tag/v0.34.0) - geckodriver
+- [Microsoft Edge](https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/?form=MA13LH) - msedgedriver 
 
 
 ### Selenium Reference & Guideline
