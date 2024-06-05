@@ -1,7 +1,7 @@
 @extends('layouts.product')
 
 @section('content')
-    <div class="flex flex-col gap-5 max-w-[1440px] mx-auto p-5 mt-20 border-2 border-white">
+    <div class="flex flex-col gap-5 max-w-[1440px] mx-auto p-5 border-2 border-white">
         <div>
             @if (session('status'))
                 <div class="bg-amber-500 flex text-center justify-center items-center p-4 w-full text-white">
@@ -39,7 +39,7 @@
             </thead>
             <tbody class="bg-white divide-y divide-gray-200">
                 @foreach ($products as $product)
-                    <tr>
+                    <tr id="{{ $product->id}}">
                         <td class="px-6 py-4 whitespace-nowrap">
                             {{ $product->id }}
                         </td>
