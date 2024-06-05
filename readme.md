@@ -27,3 +27,7 @@ command to run the webdriver
 msedgedriver
 chromedriver
 geckodriver
+
+
+Syntax Reference
+https://github.com/php-webdriver/php-webdriver/wiki/Example-command-reference
