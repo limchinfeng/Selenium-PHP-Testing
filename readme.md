@@ -1,5 +1,5 @@
 ### Instruction & Guideline (Google Docs)
-- link
+- https://docs.google.com/document/d/1c0Knk93-bPfb37HrIEqYItgoKgKQY-taV3eMJEBN_rQ/edit?usp=sharing
 
 ### Library for Php Selenium/WebDriver
 - https://github.com/php-webdriver/php-webdriver
