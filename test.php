@@ -93,6 +93,7 @@ class Test
         // $this->waitForElement(WebDriverBy::name('submit'))->click();
 
         /** Check for the success message  */
+        // $successMessage = $this->driver->findElement(WebDriverBy::cssSelector('.bg-amber-500.flex.text-center'))->getText();
         $successMessage =  $this->driver->findElement(WebDriverBy::cssSelector('.bg-amber-500'))->getText();
 
         /** Check if the success message contains the expected text */
