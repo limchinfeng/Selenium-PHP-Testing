@@ -61,7 +61,8 @@ class Test
         
         /** Find the password input field and enter the password */
         $this->driver->findElement(WebDriverBy::name('password'))->sendKeys('password');
-        
+        sleep(2);
+
         /** Find the submit button and click it */
         $this->driver->findElement(WebDriverBy::name('submit'))->click();
     }
@@ -74,6 +75,7 @@ class Test
 
         /** if there is a middleware, call the login function */
         $this->login();
+        sleep(2);
 
         /** Click on the "Create Product" button */
         $this->driver->findElement(WebDriverBy::linkText('Create Product'))->click();
@@ -81,10 +83,12 @@ class Test
         /** Generate a random product name and description */
         $productName = 'Product ' . substr(md5(mt_rand()), 0, 7);
         $productDescription = 'Description for ' . $productName;
-
+        sleep(2);
+        
         /** Fill in the name and description and click the submit button */
         $this->driver->findElement(WebDriverBy::name('name'))->sendKeys($productName);
         $this->driver->findElement(WebDriverBy::name('description'))->sendKeys($productDescription);
+        sleep(2);
         $this->driver->findElement(WebDriverBy::name('submit'))->click();
 
         /** example of how waitForElement Funciton works */
@@ -102,6 +106,7 @@ class Test
         } else {
             echo "Success Message Test: Failed - Message not found or text does not match." . PHP_EOL;
         }
+        sleep(4);
 
         /** Get the table rows */
         // $this->driver->get('http://localhost:8000/products');
@@ -159,7 +164,7 @@ class Test
         /** Click the edit link for that row */
         // $productRow->findElement(WebDriverBy::cssSelector("a[id^='edit-']"))->click();
         $productRow->findElement(WebDriverBy::linkText('Edit'))->click();
-
+        sleep(2);
 
         // --------------------------------------------------------------------------------------------
         //  Edit the product name
@@ -167,8 +172,8 @@ class Test
 
         /** Generate a new random product name */
         $updatedProductName = 'Updated ' . substr(md5(mt_rand()), 0, 7);
-        sleep(2);
         $this->driver->findElement(WebDriverBy::name('name'))->clear()->sendKeys($updatedProductName);
+        sleep(2);
         $this->driver->findElement(WebDriverBy::name('submit'))->click();
         
         /** Fetch the value of the name input field after the update */
@@ -183,11 +188,13 @@ class Test
         } else {
             echo "Edit Test: Failed - Name input value does not match." . PHP_EOL;
         }
+        sleep(2);
 
         // --------------------------------------------------------------------------------------------
         //  Check for error validation
         // --------------------------------------------------------------------------------------------
         $this->driver->findElement(WebDriverBy::name('name'))->clear()->sendKeys("");
+        sleep(2);
         $this->driver->findElement(WebDriverBy::name('submit'))->click();
 
         $successMessage =  $this->driver->findElement(WebDriverBy::cssSelector('.bg-red-600'))->getText();
@@ -198,6 +205,7 @@ class Test
         } else {
             echo "Success Message Test: Failed - Message not found or text does not match." . PHP_EOL;
         }
+        sleep(4);
     }
 
 
@@ -207,7 +215,9 @@ class Test
 
         /** Find the delete button for the latest product and click it */
         $deleteButton = $this->waitForElement(WebDriverBy::cssSelector('form[action$="' . $this->latestProductId . '"] button[type="submit"]'));
+        sleep(2);
         $deleteButton->click();
+        sleep(2);
 
         /** If there is an alert and need confirmation */
         // $this->driver->switchTo()->alert()->accept();
@@ -229,6 +239,7 @@ class Test
         } else {
             echo "Delete Test: Failed - Product still exists." . PHP_EOL;
         }
+        sleep(2);
     }
 
 
@@ -276,10 +287,10 @@ $test = new Test();
 // $test->testSelenium();
 // $test->login();
 $test->testCreate();
-// sleep(1);
-// $test->testView();
-// sleep(1);
+sleep(2);
+$test->testView();
+sleep(2);
 $test->testEdit();
-// sleep(2);
-// $test->testDelete();
-// sleep(2);
+sleep(2);
+$test->testDelete();
+sleep(2);
