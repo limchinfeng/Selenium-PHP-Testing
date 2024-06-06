@@ -26,4 +26,15 @@ class UpdateProductRequest extends FormRequest
             'description' => ['required', 'string'],
         ];
     }
+
+    public function messages()
+{
+    return [
+        'name.required' => 'The name field is required.',
+        'name.string' => 'The name field must be a string.',
+        'name.max' => 'The name field must not exceed 255 characters.',
+        'description.required' => 'The description field is required.',
+        'description.string' => 'The description field must be a string.',
+    ];
+}
 }

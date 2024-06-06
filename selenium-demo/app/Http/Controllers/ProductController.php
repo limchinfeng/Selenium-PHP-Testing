@@ -56,11 +56,13 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateProductRequest $request, string $id): RedirectResponse
+    public function update(UpdateProductRequest $request, string $id)
     {
         try {
             $product = Product::findOrFail($id);
-            $product->update($request->validated());
+            $product->name = $request->name;
+            $product->description = $request->description;
+            $product->save();
 
             return redirect()->back()->with('status', 'Product updated successfully');
         } catch (\Exception $e) {

@@ -183,6 +183,21 @@ class Test
         } else {
             echo "Edit Test: Failed - Name input value does not match." . PHP_EOL;
         }
+
+        // --------------------------------------------------------------------------------------------
+        //  Check for error validation
+        // --------------------------------------------------------------------------------------------
+        $this->driver->findElement(WebDriverBy::name('name'))->clear()->sendKeys("");
+        $this->driver->findElement(WebDriverBy::name('submit'))->click();
+
+        $successMessage =  $this->driver->findElement(WebDriverBy::cssSelector('.bg-red-600'))->getText();
+
+        /** Check if the success message contains the expected text */
+        if ($successMessage === 'The name field is required.') {
+            echo "Name Input Field Message Test: Passed" . PHP_EOL;
+        } else {
+            echo "Success Message Test: Failed - Message not found or text does not match." . PHP_EOL;
+        }
     }
 
 
