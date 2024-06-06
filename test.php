@@ -53,7 +53,7 @@ class Test
     public function login()
     {
         /** Uncomment it if you want to go to the route */
-        // $this->driver->get('http://127.0.0.1:8000/login');
+        // $this->driver->get('http://127.0.0.1:8000/login
 
 
         /** Find the email input field and enter the email */
@@ -70,10 +70,13 @@ class Test
     public function testCreate()
     {
         /** Go to the create page */
-        $this->driver->get('http://localhost:8000/products/create');
+        $this->driver->get('http://localhost:8000/products');
 
         /** if there is a middleware, call the login function */
         $this->login();
+
+        /** Click on the "Create Product" button */
+        $this->driver->findElement(WebDriverBy::linkText('Create Product'))->click();
 
         /** Generate a random product name and description */
         $productName = 'Product ' . substr(md5(mt_rand()), 0, 7);
@@ -89,8 +92,18 @@ class Test
         // $this->waitForElement(WebDriverBy::name('description'))->sendKeys($productDescription);
         // $this->waitForElement(WebDriverBy::name('submit'))->click();
 
+        /** Check for the success message  */
+        $successMessage =  $this->driver->findElement(WebDriverBy::cssSelector('.bg-amber-500'))->getText();
+
+        /** Check if the success message contains the expected text */
+        if ($successMessage === 'Product added successfully') {
+            echo "Success Message Test: Passed" . PHP_EOL;
+        } else {
+            echo "Success Message Test: Failed - Message not found or text does not match." . PHP_EOL;
+        }
+
         /** Get the table rows */
-        $this->driver->get('http://localhost:8000/products');
+        // $this->driver->get('http://localhost:8000/products');
         $productElements = $this->driver->findElements(WebDriverBy::cssSelector('tbody tr'));
 
 
@@ -106,7 +119,7 @@ class Test
         echo "Generated Product Name: " . $productName . PHP_EOL;
         echo "Fetched Product Name: " . $fetchedProductName . PHP_EOL;
 
-        if ($fetchedProductName === $productName) {
+        if ($fetchedProductName === $productName ) {
             echo "Create Test: Passed" . PHP_EOL;
         } else {
             echo "Create Test: Failed - Product name does not match." . PHP_EOL;
@@ -116,8 +129,40 @@ class Test
 
     public function testEdit()
     {
-        /** Go to the edit page of the latest product */
-        $this->driver->get('http://localhost:8000/products/' . $this->latestProductId . '/edit');
+        /** Method 1: Go to the edit page of the latest product */
+        // $this->driver->get('http://localhost:8000/products/' . $this->latestProductId . '/edit');
+
+        /** Method 2 : Find the row with the latest product ID and click the edit link */
+        // $productRow = $this->driver->findElement(WebDriverBy::cssSelector("tr[id='{$this->latestProductId}']"));
+        // $productRow->findElement(WebDriverBy::cssSelector("a[id='edit-{$this->latestProductId}']"))->click();
+
+
+        /** Method 3: Get the table rows */
+        $productElements = $this->driver->findElements(WebDriverBy::cssSelector('tbody tr'));
+
+        /** Find the row with the product name */
+        $productRow = null;
+        foreach ($productElements as $element) {
+            $productIdElement = $element->findElement(WebDriverBy::cssSelector('td:nth-child(1)'));
+            if ($productIdElement->getText() === $this->latestProductId) {
+                $productRow = $element;
+                break;
+            }
+        }
+
+        if ($productRow === null) {
+            echo "Edit Test: Failed - Product not found." . PHP_EOL;
+            return;
+        }
+
+        /** Click the edit link for that row */
+        // $productRow->findElement(WebDriverBy::cssSelector("a[id^='edit-']"))->click();
+        $productRow->findElement(WebDriverBy::linkText('Edit'))->click();
+
+
+        // --------------------------------------------------------------------------------------------
+        //  Edit the product name
+        // --------------------------------------------------------------------------------------------
 
         /** Generate a new random product name */
         $updatedProductName = 'Updated ' . substr(md5(mt_rand()), 0, 7);
@@ -215,10 +260,10 @@ $test = new Test();
 // $test->testSelenium();
 // $test->login();
 $test->testCreate();
-sleep(1);
-$test->testView();
-sleep(1);
+// sleep(1);
+// $test->testView();
+// sleep(1);
 $test->testEdit();
-sleep(2);
-$test->testDelete();
-sleep(2);
+// sleep(2);
+// $test->testDelete();
+// sleep(2);
