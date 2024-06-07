@@ -17,18 +17,25 @@ class Test
     **/
     public function __construct()
     {
-        // Chrome
-        $host = 'http://localhost:9515';
+        /** Selenium Server */
+        $host = 'http://192.168.0.123:4444';
         $capabilities = DesiredCapabilities::chrome();
+        // $capabilities = DesiredCapabilities::firefox();
+        // $capabilities = DesiredCapabilities::microsoftEdge();
+
+
+        /** Chrome */
+        // $host = 'http://localhost:9515';
+        // $capabilities = DesiredCapabilities::chrome();
 
         /** Firefox */
         // $host = 'http://localhost:4444';
         // $capabilities = DesiredCapabilities::firefox();
-
+        
         /** Microsoft Edge */
         // $host = 'http://localhost:9515';
         // $capabilities = DesiredCapabilities::microsoftEdge();
-
+        
         // Create a new instance of the RemoteWebDriver
         $this->driver = RemoteWebDriver::create($host, $capabilities);
     }
@@ -53,7 +60,7 @@ class Test
     public function login()
     {
         /** Uncomment it if you want to go to the route */
-        // $this->driver->get('http://127.0.0.1:8000/login
+        // $this->driver->get('http://127.0.0.1:8000/login');
 
 
         /** Find the email input field and enter the email */
@@ -286,6 +293,7 @@ class Test
 $test = new Test();
 // $test->testSelenium();
 // $test->login();
+// sleep(2);
 $test->testCreate();
 sleep(2);
 $test->testView();
