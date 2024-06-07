@@ -7,6 +7,10 @@
 ### php-webdriver command reference
 - https://github.com/php-webdriver/php-webdriver/wiki/Example-command-reference
 
+### Selenium Server Jar
+- https://www.selenium.dev/documentation/grid/getting_started/
+- https://github.com/SeleniumHQ/selenium/releases/tag/selenium-4.21.0
+
 ### WebDriver for
 - [Chrome](https://googlechromelabs.github.io/chrome-for-testing/) - chromedriver 
 - [Firefox](https://github.com/mozilla/geckodriver/releases/tag/v0.34.0) - geckodriver
